@@ -39,9 +39,9 @@ forge test
 
 | 보고 싶으신 것                 | Hardhat                                        | Foundry                          |
 | ------------------------------ | ---------------------------------------------- | -------------------------------- |
-| 메인넷 USDC 포크 읽기          | `hardhat/test/mantle.usdc.test.ts`             | `foundry/test/MantleUSDC.t.sol`  |
-| 체인 정보 조회 (eth-chainlist) | `hardhat/test/mantle.chain.test.ts`            | —                                |
-| USDC↔USDT 볼륨 펌프 시뮬       | `hardhat/test/mantle.volume.test.ts`           | `foundry/script/VolumeSim.s.sol` |
+| 메인넷 USDC 포크 읽기          | `hardhat/test/shared/mantle.usdc.test.ts`             | `foundry/test/shared/MantleUSDC.t.sol`  |
+| 체인 정보 조회 (eth-chainlist) | `hardhat/test/shared/mantle.chain.test.ts`            | —                                |
+| USDC↔USDT 볼륨 펌프 시뮬       | `hardhat/test/merchant-moe/mantle.volume.test.ts`           | `foundry/script/VolumeSim.s.sol` |
 | Sepolia 배포                   | `hardhat/ignition/modules/MantleUSDCDeploy.ts` | `foundry/script/Deploy.s.sol`    |
 
 ## 볼륨 펌프 시뮬 결과 요약

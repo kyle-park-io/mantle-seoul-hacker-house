@@ -2,7 +2,7 @@
  * Hardhat 미러 of `foundry/script/VolumeSim.s.sol`.
  *
  * USDC ↔ USDT volume-pumping simulation on a Mantle mainnet fork.
- * Same logic as `test/mantle.volume.test.ts` but written as a runnable script
+ * Same logic as `test/merchant-moe/mantle.volume.test.ts` but written as a runnable script
  * (no Mocha wrapper, no assertions) so it can be invoked outside the test runner.
  * Fork-only — NEVER broadcasts.
  *

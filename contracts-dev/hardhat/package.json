@@ -22,7 +22,7 @@
     "lint:ts": "eslint 'test/**/*.ts' 'ignition/**/*.ts' 'scripts/**/*.ts'",
     "node": "hardhat node",
     "test": "hardhat test",
-    "volume:sim": "hardhat test test/mantle.volume.test.ts",
+    "volume:sim": "hardhat test test/merchant-moe/mantle.volume.test.ts",
     "volume:sim:script": "hardhat run scripts/volumeSim.ts --network mantleFork"
   },
   "dependencies": {
