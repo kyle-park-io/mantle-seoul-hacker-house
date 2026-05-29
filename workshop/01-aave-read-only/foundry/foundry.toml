@@ -1,0 +1,13 @@
+# Workshop demo 01 — self-contained Foundry project.
+# Read-only Aave V3 reserve queries on a Mantle fork; needs only forge-std.
+[profile.default]
+src = "src"
+test = "test"
+libs = ["lib"]
+solc = "0.8.26"
+# Aave's getReserveData returns 12 values; optimizer avoids "stack too deep".
+optimizer = true
+optimizer_runs = 200
+
+[rpc_endpoints]
+mantle = "${MANTLE_RPC_URL}"

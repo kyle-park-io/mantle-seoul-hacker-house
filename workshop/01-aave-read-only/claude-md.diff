@@ -1,0 +1,45 @@
+diff --git a/CLAUDE.md b/CLAUDE.md
+index f4d4702..a20daf3 100644
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -9,6 +9,7 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
+ | `contracts/`     | **프로덕션 레퍼런스**  | 이미 온체인에 배포돼 운영 중인 컨트랙트의 소스/주소/ABI를 끌어와 **분석**하는 곳. 우리가 만든 코드가 아니다. |
+ | `contracts-dev/` | **개발 워크스페이스**  | 우리가 직접 작성·실험·시뮬레이션하는 코드. Hardhat 3 + Foundry 두 스택.                                      |
+ | `external/`      | **외부 레포 서브모듈** | 다른 레포를 git submodule로 참조.                                                                            |
++| `workshop/`      | **데모/실습**          | 단계별 데모. 완성본(정답지)과 진행 서사·`CLAUDE.md` 변화 기록을 담는다. 실습 중 참가자가 직접 만든 코드는 `contracts-dev/` 에 생긴다. |
+ 
+ > `contracts/` 와 `contracts-dev/` 는 **단계 관계가 아니라 별개**다. dev에서 졸업해 prod로 가는 구조가 아니라, 한쪽은 "남이 배포한 걸 분석", 한쪽은 "우리가 개발"이다.
+ 
+@@ -41,4 +42,32 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
+ 
+ - Hardhat: `cd contracts-dev/hardhat && yarn install && yarn test`
+ - Foundry: `cd contracts-dev/foundry`, 의존성은 서브모듈이 아니라 `forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts Vectorized/solady` 로 받는다 (`lib/` 는 gitignore).
++  - `forge` 가 없으면(`forge --version` 실패) 먼저 설치 안내: `curl -L https://foundry.paradigm.xyz | bash` 후 `foundryup` ([설치 문서](https://www.getfoundry.sh/introduction/installation)).
+ - Mantle 메인넷 RPC fork 로 실제 온체인 상태를 읽는 테스트/스크립트가 핵심 패턴.
++
++**소스는 프로토콜(분석 대상)별로 묶는다.** `contracts/` 의 분석 대상과 1:1로 대응되게:
++
++```
++foundry/src/ (및 hardhat/contracts/)
++├── <protocol>/   ← 그 프로토콜과 상호작용하는 컨트랙트·인터페이스 (예: chainlink/, merchant-moe/, aave/)
++└── shared/       ← 특정 프로토콜에 속하지 않는 범용 코드 + mocks/
++```
++
++- 테스트/스크립트도 같은 프로토콜 이름으로 대응시킨다 (`test/aave/...`).
++- Foundry import 는 `src/<protocol>/...` 경로 기반, Hardhat 은 컨트랙트 이름 기반(폴더 이동에 영향 적음).
++
++**fork 테스트 작성 패턴** (외부 배포 컨트랙트와 상호작용할 때):
++
++1. 주소·ABI 는 `contracts/<protocol>/` 레퍼런스에서 가져온다 (추측 금지).
++2. read-only 데모는 상태 변경/broadcast 없이 조회+로그+assert 만.
++3. 두 스택 중 어느 쪽으로 만들어도 되며, 같은 배포 주소를 읽으니 결과가 일치해야 한다.
++
++**Foundry** (`foundry/{src,test}/<protocol>/`):
++- 필요한 함수만 담은 **최소 인터페이스**를 `src/<protocol>/` 에 직접 선언 (전체 소스 불필요).
++- `setUp()` 에서 `vm.createSelectFork(vm.envOr("MANTLE_RPC_URL", string("https://rpc.mantle.xyz")))` — 공개 RPC fallback.
++- 반환값이 많은 Aave 뷰함수(`getReserveData` 12개)는 optimizer 를 켜야 "stack too deep" 을 피한다.
++
++**Hardhat** (`hardhat/test/<protocol>/*.test.ts`):
++- `network.create({ network: "mantleFork" })` 로 fork 연결 (`hardhat.config.ts` 의 `mantleFork` 가 공개 RPC fallback).
++- 배포 컨트랙트는 인라인 ABI + viem `publicClient.readContract` 로 직접 호출 — 인터페이스 .sol 선언 불필요. (기존 `mantle.usdc.test.ts` 패턴)
++- 끝에서 `connection.close()`.

@@ -1,0 +1,17 @@
+# Foundry build output
+out/
+cache/
+cache_forge/
+
+# Foundry artifacts
+broadcast/
+foundry.lock
+.gas-snapshot
+
+# Dependencies (installed via `forge install`, not committed)
+lib/
+
+# Env
+.env
+.env.*
+!.env.example
