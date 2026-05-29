@@ -1,5 +1,5 @@
 diff --git a/CLAUDE.md b/CLAUDE.md
-index f4d4702..92088ee 100644
+index f4d4702..fc482c7 100644
 --- a/CLAUDE.md
 +++ b/CLAUDE.md
 @@ -9,6 +9,7 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
@@ -10,7 +10,7 @@ index f4d4702..92088ee 100644
  
  > `contracts/` 와 `contracts-dev/` 는 **단계 관계가 아니라 별개**다. dev에서 졸업해 prod로 가는 구조가 아니라, 한쪽은 "남이 배포한 걸 분석", 한쪽은 "우리가 개발"이다.
  
-@@ -29,11 +30,11 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
+@@ -29,16 +30,45 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
  
  ### contracts/ — 프로덕션 컨트랙트 가져오기
  
@@ -25,10 +25,12 @@ index f4d4702..92088ee 100644
  4. **검증 한계 명시**: 키 없이 받은 ABI/소스는 그 주소의 온체인 바이트코드와 1:1 검증된 게 아니다 — README/analysis 에 그 사실을 적는다.
  5. 받은 단일 `.sol` 은 import 의존이 있어 단독 컴파일이 안 될 수 있다. 읽기·분석용임을 명시.
  
-@@ -41,4 +42,32 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
+ ### contracts-dev/ — 개발
  
  - Hardhat: `cd contracts-dev/hardhat && yarn install && yarn test`
- - Foundry: `cd contracts-dev/foundry`, 의존성은 서브모듈이 아니라 `forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts Vectorized/solady` 로 받는다 (`lib/` 는 gitignore).
+-- Foundry: `cd contracts-dev/foundry`, 의존성은 서브모듈이 아니라 `forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts Vectorized/solady` 로 받는다 (`lib/` 는 gitignore).
++- Foundry: `cd contracts-dev/foundry`, 의존성은 서브모듈이 아니라 `forge install --no-git foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts Vectorized/solady` 로 받는다 (`lib/` 는 gitignore).
++  - **`--no-git` 필수**: 이게 없으면 forge 가 `lib/*` 를 git 서브모듈로 `.gitmodules` 에 등록해버린다 (우리 방침과 충돌). 이 레포의 서브모듈은 `external/` 뿐이어야 한다.
 +  - `forge` 가 없으면(`forge --version` 실패) 먼저 설치 안내: `curl -L https://foundry.paradigm.xyz | bash` 후 `foundryup` ([설치 문서](https://www.getfoundry.sh/introduction/installation)).
  - Mantle 메인넷 RPC fork 로 실제 온체인 상태를 읽는 테스트/스크립트가 핵심 패턴.
 +
