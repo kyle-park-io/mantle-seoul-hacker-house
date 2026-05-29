@@ -1,0 +1,18 @@
+[submodule "external/byreal-skill-for-fun"]
+	path = external/byreal-skill-for-fun
+	url = https://github.com/kyle-park-io/byreal-skill-for-fun.git
+[submodule "external/byreal-agent-skills"]
+	path = external/byreal-agent-skills
+	url = https://github.com/kyle-park-io/byreal-agent-skills.git
+[submodule "external/RealClaw-Skills"]
+	path = external/RealClaw-Skills
+	url = https://github.com/kyle-park-io/RealClaw-Skills.git
+[submodule "external/mantle-agent-cli"]
+	path = external/mantle-agent-cli
+	url = https://github.com/kyle-park-io/mantle-agent-cli.git
+[submodule "external/mantle-skills"]
+	path = external/mantle-skills
+	url = https://github.com/kyle-park-io/mantle-skills.git
+[submodule "external/mantle-agent-scaffold"]
+	path = external/mantle-agent-scaffold
+	url = https://github.com/kyle-park-io/mantle-agent-scaffold.git
