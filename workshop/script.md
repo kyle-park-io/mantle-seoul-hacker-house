@@ -62,7 +62,9 @@ contracts/aave-v3-mantle 를 참고해서, Aave V3 USDC 리저브의 공급량·
 Mantle fork 로 읽는 read-only 테스트를 만들어줘
 ```
 
-→ `contracts-dev/foundry/src/aave/` 에 최소 인터페이스, `test/aave/AaveReadOnly.t.sol` 에 fork 테스트가 생깁니다. 위치·패턴은 `CLAUDE.md` 의 "프로토콜별로 묶는다" + "fork 테스트 작성 패턴" 을 따릅니다.
+→ `contracts-dev/foundry/src/aave/` 에 최소 인터페이스, `contracts-dev/foundry/test/aave/` 에 fork 테스트가 생깁니다. 위치·패턴은 `CLAUDE.md` 의 "프로토콜별로 묶는다" + "fork 테스트 작성 패턴" 을 따릅니다.
+
+> 정확한 파일명이나 어떤 값을 assert 할지는 정해져 있지 않습니다 — 사람(또는 에이전트)마다 조금씩 다르게 나오는 게 정상입니다. `CLAUDE.md` 가 강제하는 건 **위치와 방식**(어디에 / 최소 인터페이스 / fork + 공개 RPC fallback / read-only)이지, 테스트 내용 한 글자까지가 아닙니다.
 
 > Hardhat 으로 하려면 `contracts-dev/hardhat/test/aave/` 에 만들면 됩니다. 방식만 다르고(`network.create` + viem) 결과는 같습니다.
 
@@ -89,7 +91,7 @@ USDC 는 LTV 0, 담보 불가 — Mantle 에선 빌리는 자산으로만 쓰입
 workshop/01-aave-read-only 의 정답지와 내가 만든 걸 비교해줘
 ```
 
-→ 같은 주소를 읽었으니 숫자가 일치해야 합니다.
+→ 파일이 똑같을 필요는 없습니다(인터페이스 모양·파일명·assert 는 다를 수 있음). 확인할 건 하나 — **같은 주소를 읽었으니 출력 수치가 일치**해야 합니다. 공급량·차입량 끝자리는 블록이 진행되며 조금씩 달라질 수 있지만 같은 리저브 값이면 정상입니다.
 
 ---
 

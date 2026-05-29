@@ -1,5 +1,5 @@
 diff --git a/CLAUDE.md b/CLAUDE.md
-index f4d4702..a20daf3 100644
+index f4d4702..0b0ebe7 100644
 --- a/CLAUDE.md
 +++ b/CLAUDE.md
 @@ -9,6 +9,7 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
@@ -9,6 +9,18 @@ index f4d4702..a20daf3 100644
 +| `workshop/`      | **데모/실습**          | 단계별 데모. 완성본(정답지)과 진행 서사·`CLAUDE.md` 변화 기록을 담는다. 실습 중 참가자가 직접 만든 코드는 `contracts-dev/` 에 생긴다. |
  
  > `contracts/` 와 `contracts-dev/` 는 **단계 관계가 아니라 별개**다. dev에서 졸업해 prod로 가는 구조가 아니라, 한쪽은 "남이 배포한 걸 분석", 한쪽은 "우리가 개발"이다.
+ 
+@@ -31,9 +32,9 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
+ 
+ 배포된 컨트랙트를 분석용으로 들여올 때의 표준 절차 (Aave V3 가 첫 사례, `contracts/aave-v3-mantle/` 참고):
+ 
+-1. **주소는 권위 있는 출처에서.** 추측 금지. Aave는 [aave-address-book](https://github.com/bgd-labs/aave-address-book), 그 외엔 공식 docs/배포 레포.
++1. **주소는 권위 있는 출처에서.** 추측 금지. Aave는 [aave-address-book](https://github.com/aave-dao/aave-address-book) (`src/AaveV3Mantle.sol`), 그 외엔 공식 docs/배포 레포.
+ 2. 폴더 구조: `contracts/<protocol>/` 아래 `address.md`, `abi/`, `src/`, `analysis.md`, `README.md`.
+-3. **ABI/소스 수집**: Mantlescan/Etherscan은 이제 Etherscan V2 통합 API(`chainid=5000`)라 **API 키가 필수**다. 키가 없으면 공식 npm 패키지(`@aave/core-v3` 등)와 GitHub 소스(`aave-v3-origin` 등)에서 받는다.
++3. **ABI/소스 수집**: Mantlescan/Etherscan은 이제 Etherscan V2 통합 API(`chainid=5000`)라 **API 키가 필수**다. 키가 없으면 공식 npm 패키지에서 받는다. Aave 는 `@aave/core-v3` 한 패키지에 ABI(artifacts)와 소스(`.sol`)가 같이 들어있으니 **둘 다 같은 패키지·같은 버전에서** 받으면 ABI↔소스가 일치한다 (소스만 따로 `aave/aave-v3-origin` GitHub 에서 받아도 되지만 버전 정합을 직접 맞춰야 함).
+ 4. **검증 한계 명시**: 키 없이 받은 ABI/소스는 그 주소의 온체인 바이트코드와 1:1 검증된 게 아니다 — README/analysis 에 그 사실을 적는다.
+ 5. 받은 단일 `.sol` 은 import 의존이 있어 단독 컴파일이 안 될 수 있다. 읽기·분석용임을 명시.
  
 @@ -41,4 +42,32 @@ Mantle 기반 작업을 위한 모노레포. 컨트랙트 개발, 배포된 프
  
