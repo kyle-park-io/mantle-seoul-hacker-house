@@ -29,7 +29,7 @@ foundryup                                       # forge/cast/anvil/chisel 설치
 
 ## 1. Aave 가져오기
 
-배포된 Aave 컨트랙트의 주소·ABI·소스를 `contracts/` 에 가져옵니다. 이미 `contracts/aave-v3-mantle/` 에 만들어져 있지만, 직접 재현하려면 아래 순서로 진행하세요.
+배포된 Aave 컨트랙트의 주소·ABI·소스를 `contracts/` 에 **직접 받아오는 것**이 첫 단계입니다. 시작 시점에는 `contracts/aave-v3-mantle/` 폴더가 **없습니다** — 완성본은 [`contracts/aave-v3-mantle.archived/`](../contracts/aave-v3-mantle.archived) 에 정답지로만 보관돼 있어요. 아래 프롬프트로 **에이전트가 권위 있는 출처에서 처음부터** `contracts/aave-v3-mantle/` 를 만들게 하세요. 에이전트는 `CLAUDE.md` 의 "contracts/ 가져오기" 절차만 보고 정답지와 같은 결과(주소 등)에 도달합니다.
 
 **1-1.** 에이전트에 입력:
 
@@ -47,7 +47,14 @@ foundryup                                       # forge/cast/anvil/chisel 설치
 
 → `contracts/aave-v3-mantle/` 에 `address.md`(출처 명시), `abi/`(npm), `src/`(GitHub), 검증 한계를 적은 `README.md`, `analysis.md` 가 생깁니다.
 
-**확인:** 폴더 위치를 지정하지 않았는데도 `contracts/aave-v3-mantle/` 에 정리됩니다. `CLAUDE.md` 의 "contracts/ 가져오기" 절차를 따른 결과입니다.
+**확인:** 폴더 위치를 지정하지 않았는데도 `contracts/aave-v3-mantle/` 에 정리됩니다. `CLAUDE.md` 의 "contracts/ 가져오기" 절차를 따른 결과입니다. 정답지(`contracts/aave-v3-mantle.archived/`)와 주소가 일치하는지 비교해보세요:
+
+```bash
+diff <(grep -oiE '0x[0-9a-f]{40}' contracts/aave-v3-mantle/address.md | sort -u) \
+     <(grep -oiE '0x[0-9a-f]{40}' contracts/aave-v3-mantle.archived/address.md | sort -u)
+```
+
+핵심 4종 주소가 같으면 성공입니다.
 
 ---
 
@@ -55,11 +62,11 @@ foundryup                                       # forge/cast/anvil/chisel 설치
 
 가져온 주소로 Mantle 을 fork 떠서 USDC 리저브 상태를 읽습니다. 정답지는 [`01-aave-read-only/`](./01-aave-read-only) 에 있으니, `contracts-dev/` 에 직접 만들어보고 나중에 대조하세요.
 
-**2-1.** 테스트 생성 요청:
+**2-1.** 테스트 생성 요청 (1단계에서 직접 받아온 레퍼런스를 참고):
 
 ```
-contracts/aave-v3-mantle 를 참고해서, Aave V3 USDC 리저브의 공급량·차입량·이자율을
-Mantle fork 로 읽는 read-only 테스트를 만들어줘
+방금 받아온 contracts/aave-v3-mantle 를 참고해서, Aave V3 USDC 리저브의
+공급량·차입량·이자율을 Mantle fork 로 읽는 read-only 테스트를 만들어줘
 ```
 
 → `contracts-dev/foundry/src/aave/` 에 최소 인터페이스, `contracts-dev/foundry/test/aave/` 에 fork 테스트가 생깁니다. 위치·패턴은 `CLAUDE.md` 의 "프로토콜별로 묶는다" + "fork 테스트 작성 패턴" 을 따릅니다.

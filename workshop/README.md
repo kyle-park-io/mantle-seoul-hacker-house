@@ -24,7 +24,7 @@ Mantle 위에서 **배포된 컨트랙트를 분석·테스트하는 흐름**을
 - **Foundry**: `contracts-dev/foundry/test/aave/AaveReadOnly.t.sol` — 최소 인터페이스 + `vm.createSelectFork`
 - **Hardhat**: `contracts-dev/hardhat/test/aave/*.test.ts` — `network.create({ network: "mantleFork" })` + viem `readContract` 로 인라인 ABI 직접 호출 (기존 `mantle.usdc.test.ts` 패턴)
 
-두 스택 모두 같은 배포 주소(`contracts/aave-v3-mantle/address.md`)를 읽으므로 결과가 일치해야 한다 — 그 자체가 데모 포인트.
+두 스택 모두 0단계에서 받아온 같은 배포 주소(`contracts/aave-v3-mantle/address.md`)를 읽으므로 결과가 일치해야 한다 — 그 자체가 데모 포인트.
 
 ## 진행 방법
 
@@ -34,7 +34,7 @@ Mantle 위에서 **배포된 컨트랙트를 분석·테스트하는 흐름**을
 
 | 단계 | 내용 | 정답지 |
 | --- | --- | --- |
-| 0 | 배포된 Aave V3 핵심 컨트랙트를 `contracts/` 로 가져오기 | [`../contracts/aave-v3-mantle/`](../contracts/aave-v3-mantle) |
+| 0 | 배포된 Aave V3 핵심 컨트랙트를 `contracts/` 로 가져오기 (실습으로 직접 받아옴) | 정답지: [`../contracts/aave-v3-mantle.archived/`](../contracts/aave-v3-mantle.archived) |
 | 01 | Aave V3 USDC 리저브 read-only 조회 (fork) | [`01-aave-read-only/`](./01-aave-read-only) |
 
 > 다음 단계(supply, borrow 등)는 데모를 진행하며 추가한다.

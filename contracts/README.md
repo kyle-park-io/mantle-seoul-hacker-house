@@ -8,11 +8,13 @@
 
 | 프로토콜 | 네트워크 | 내용 |
 | --- | --- | --- |
-| [`aave-v3-mantle/`](./aave-v3-mantle) | Mantle 메인넷 | Aave V3 (`proto_mantle_v3`) 핵심 4종 — Pool, PoolAddressesProvider, AaveProtocolDataProvider, AaveOracle |
+| [`aave-v3-mantle.archived/`](./aave-v3-mantle.archived) | Mantle 메인넷 | Aave V3 (`proto_mantle_v3`) 핵심 4종 — Pool, PoolAddressesProvider, AaveProtocolDataProvider, AaveOracle |
+
+> `aave-v3-mantle.archived/` 는 워크숍 0단계([`../workshop`](../workshop))의 **정답지**입니다. 실습에서 참가자가 직접 받아오면 `aave-v3-mantle/` 가 새로 생기고, 그게 정답지(`.archived`)와 일치하는지 대조합니다.
 
 ## 폴더 구조
 
-각 프로토콜은 `contracts/<protocol>/` 아래에 다음 형태로 정리합니다 (`aave-v3-mantle/` 가 참고 사례):
+각 프로토콜은 `contracts/<protocol>/` 아래에 다음 형태로 정리합니다 (`aave-v3-mantle.archived/` 가 참고 사례):
 
 ```
 contracts/
