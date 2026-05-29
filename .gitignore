@@ -43,5 +43,8 @@ venv/
 # Claude local settings
 .claude/settings.local.json
 
+# Claude agent worktrees (transient, self-contained git checkouts)
+.claude/worktrees/
+
 # Local notes
 instruction.md
