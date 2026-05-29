@@ -23,8 +23,6 @@ foundryup                                       # forge/cast/anvil/chisel 설치
 
 설치 후 터미널을 새로 열거나 `source ~/.bashrc` (zsh 는 `~/.zshrc`) 를 실행하세요.
 
-> Hardhat 으로 따라올 거면 Foundry 대신 Node.js + yarn 만 있으면 됩니다.
-
 ---
 
 ## 1. Aave 가져오기
@@ -73,7 +71,7 @@ diff <(grep -oiE '0x[0-9a-f]{40}' contracts/aave-v3-mantle/address.md | sort -u)
 
 > 정확한 파일명이나 어떤 값을 assert 할지는 정해져 있지 않습니다 — 사람(또는 에이전트)마다 조금씩 다르게 나오는 게 정상입니다. `CLAUDE.md` 가 강제하는 건 **위치와 방식**(어디에 / 최소 인터페이스 / fork + 공개 RPC fallback / read-only)이지, 테스트 내용 한 글자까지가 아닙니다.
 
-> Hardhat 으로 하려면 `contracts-dev/hardhat/test/aave/` 에 만들면 됩니다. 방식만 다르고(`network.create` + viem) 결과는 같습니다.
+> 이 워크숍은 **Foundry 로 진행**합니다 (정답지가 Foundry 라 대조가 쉽습니다). 에이전트가 Hardhat 으로 만들려 하면 "Foundry 로 만들어줘" 라고 짚어주세요.
 
 **2-2.** 의존성 설치 + 실행 요청:
 

@@ -17,18 +17,17 @@ Mantle 위에서 **배포된 컨트랙트를 분석·테스트하는 흐름**을
 
 > 실습 시연: 참가자가 "Aave USDC 리저브를 fork 로 읽는 테스트 만들어줘" 라고 하면, 에이전트는 `CLAUDE.md` 의 "fork 테스트 작성 패턴" 을 읽고 `contracts-dev/foundry/{src,test}/aave/` 에 코드를 만든다. 정답지(`workshop/01-...`)와 대조하며 확인.
 
-### 스택 선택 (Foundry / Hardhat)
+### 스택 — 이 워크숍은 Foundry 로 진행
 
-`contracts-dev/` 는 **Foundry 와 Hardhat 두 스택**을 같은 컨트랙트에 대해 보여주는 게 컨셉이다. workshop 정답지는 간결함을 위해 **Foundry 로만** 제공하지만, 실습에서는 둘 중 어느 쪽으로 만들어도 된다.
+`contracts-dev/` 자체는 Foundry 와 Hardhat 두 스택을 지원하지만(`CLAUDE.md` 의 "fork 테스트 작성 패턴" 에 둘 다 정리돼 있다), **이 워크숍은 Foundry 한 스택으로만 진행한다.** 정답지도 Foundry 로만 있으니 대조도 Foundry 끼리 한다.
 
-- **Foundry**: `contracts-dev/foundry/test/aave/AaveReadOnly.t.sol` — 최소 인터페이스 + `vm.createSelectFork`
-- **Hardhat**: `contracts-dev/hardhat/test/aave/*.test.ts` — `network.create({ network: "mantleFork" })` + viem `readContract` 로 인라인 ABI 직접 호출 (기존 `mantle.usdc.test.ts` 패턴)
+- **Foundry**: `contracts-dev/foundry/test/aave/` — 최소 인터페이스(`src/aave/`) + `vm.createSelectFork` 로 Mantle fork → read-only assert.
 
-두 스택 모두 0단계에서 받아온 같은 배포 주소(`contracts/aave-v3-mantle/address.md`)를 읽으므로 결과가 일치해야 한다 — 그 자체가 데모 포인트.
+0단계에서 받아온 배포 주소(`contracts/aave-v3-mantle/address.md`)를 읽으므로, 누가 만들어도 출력 수치가 일치해야 한다 — 그게 대조 포인트.
 
 ## 진행 방법
 
-발표자가 청중 앞에서 읽으며 진행하는 **구어체 발표 대본**이 [`script.md`](./script.md) 에 있다. 말하는 멘트와 실제로 입력/시연하는 명령을 구분해서, Aave 를 가져온 0단계부터 fork 테스트 1단계까지 순서대로 따라간다.
+참가자가 보고 그대로 따라 하는 **실습 가이드**가 [`script.md`](./script.md) 에 있다. 위에서부터 순서대로, Aave 를 가져오는 0단계부터 fork 테스트 1단계까지 따라간다.
 
 ## 단계
 
