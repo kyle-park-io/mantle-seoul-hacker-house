@@ -1,0 +1,40 @@
+# Hardhat and Foundry each have their own .gitignore in their folder.
+# This root file only covers things that may appear anywhere in the repo.
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Dev docs
+/md/
+/instruction/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Secrets
+*.pem
+*.key
+*.p12
+
+# Claude Code
+.claude/
+
+# Misc
+*.bak
+*.tmp
