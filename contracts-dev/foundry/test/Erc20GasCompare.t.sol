@@ -2,8 +2,8 @@
 pragma solidity ^0.8.26;
 
 import {Test, console} from "forge-std/Test.sol";
-import {MockERC20} from "src/mocks/MockERC20.sol";
-import {MockERC20Solady} from "src/mocks/MockERC20Solady.sol";
+import {MockERC20} from "src/shared/mocks/MockERC20.sol";
+import {MockERC20Solady} from "src/shared/mocks/MockERC20Solady.sol";
 
 /// @notice Side-by-side gas comparison: OpenZeppelin ERC20 vs Solady ERC20.
 /// Run `forge test --match-contract Erc20GasCompare --gas-report` to see the breakdown.

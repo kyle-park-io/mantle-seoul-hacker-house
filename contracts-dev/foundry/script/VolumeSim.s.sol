@@ -4,7 +4,7 @@ pragma solidity ^0.8.26;
 import {Script, console} from "forge-std/Script.sol";
 import {StdCheats} from "forge-std/StdCheats.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IMerchantMoeLBRouter} from "src/interfaces/IMerchantMoeLBRouter.sol";
+import {IMerchantMoeLBRouter} from "src/merchant-moe/IMerchantMoeLBRouter.sol";
 
 /// @notice USDC <-> USDT volume-pumping simulation on a Mantle mainnet fork.
 ///         No vm.broadcast — purely a fork-only demonstration of how the same

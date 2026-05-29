@@ -2,8 +2,8 @@
 pragma solidity ^0.8.26;
 
 import {Script, console} from "forge-std/Script.sol";
-import {MockERC20} from "src/mocks/MockERC20.sol";
-import {MantleUSDC} from "src/MantleUSDC.sol";
+import {MockERC20} from "src/shared/mocks/MockERC20.sol";
+import {MantleUSDC} from "src/shared/MantleUSDC.sol";
 
 /// @notice Deploys MockERC20 (USDC stand-in) and the MantleUSDC reader on Mantle Sepolia.
 contract Deploy is Script {

@@ -19,3 +19,12 @@
 [submodule "external/chains"]
 	path = external/chains
 	url = git@github.com:kyle-park-io/chains.git
+[submodule "contracts-dev/foundry/lib/forge-std"]
+	path = contracts-dev/foundry/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "contracts-dev/foundry/lib/openzeppelin-contracts"]
+	path = contracts-dev/foundry/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "contracts-dev/foundry/lib/solady"]
+	path = contracts-dev/foundry/lib/solady
+	url = https://github.com/Vectorized/solady

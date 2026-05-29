@@ -2,7 +2,7 @@
 pragma solidity ^0.8.26;
 
 import {Test, console} from "forge-std/Test.sol";
-import {ChainlinkPriceReader} from "src/ChainlinkPriceReader.sol";
+import {ChainlinkPriceReader} from "src/chainlink/ChainlinkPriceReader.sol";
 
 contract ChainlinkPriceReaderForkTest is Test {
     // Chainlink MNT/USD price feed on Mantle mainnet.

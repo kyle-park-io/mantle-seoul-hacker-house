@@ -2,7 +2,7 @@
 pragma solidity ^0.8.26;
 
 import {Test, console} from "forge-std/Test.sol";
-import {MantleUSDC} from "src/MantleUSDC.sol";
+import {MantleUSDC} from "src/shared/MantleUSDC.sol";
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 contract MantleUSDCForkTest is Test {
