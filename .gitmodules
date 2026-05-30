@@ -18,4 +18,4 @@
 	url = https://github.com/kyle-park-io/mantle-agent-scaffold.git
 [submodule "external/chains"]
 	path = external/chains
-	url = git@github.com:kyle-park-io/chains.git
+	url = https://github.com/kyle-park-io/chains.git
