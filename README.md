@@ -2,6 +2,12 @@
 
 Mantle 체인 위에서 컨트랙트를 **개발하고, 배포된 컨트랙트를 분석하고, 데모로 실습**하는 모노레포입니다.
 
+## 시작하기
+
+- 작업 컨벤션과 절차(폴더 용도, 컨트랙트 가져오기, fork 테스트 패턴 등)는 [`CLAUDE.md`](./CLAUDE.md) 에 정리돼 있습니다.
+- 데모를 따라 하려면 [`workshop/script.md`](./workshop/script.md) 를 보세요.
+- 서브모듈 포함 클론: `git clone --recurse-submodules <repo>` (또는 클론 후 `git submodule update --init --recursive`).
+
 ## 구조
 
 폴더마다 든 것을 아래 표에 적었습니다. 경로는 레포 맨 위 폴더에서 셉니다.
@@ -40,9 +46,3 @@ Mantle 체인 위에서 컨트랙트를 **개발하고, 배포된 컨트랙트�
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`foundry/`](workshop/01-aave-read-only/foundry/) | 이 단계만 단독으로 도는 Foundry 프로젝트(src, test) |
 | [`.gitmodules`](.gitmodules) | external/ 서브모듈의 경로와 주소 |
 | [`CLAUDE.md`](CLAUDE.md) | 에이전트용 작업 컨벤션. 폴더 용도, 컨트랙트 가져오기, 포크 시험 패턴 |
-
-## 시작하기
-
-- 작업 컨벤션과 절차(폴더 용도, 컨트랙트 가져오기, fork 테스트 패턴 등)는 [`CLAUDE.md`](./CLAUDE.md) 에 정리돼 있습니다.
-- 데모를 따라 하려면 [`workshop/script.md`](./workshop/script.md) 를 보세요.
-- 서브모듈 포함 클론: `git clone --recurse-submodules <repo>` (또는 클론 후 `git submodule update --init --recursive`).
